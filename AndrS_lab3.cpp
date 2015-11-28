@@ -1,16 +1,39 @@
 #include "sdt.h"
+
 enum error {er_temp,er_scale,no_er};
-double convert(double temperature, char from, char to);
+error convert(double temperature, char from, char to, double &result);
 
 int main()
 {
     using namespace std;
-    double degrees;
+    double degrees,total;
     char scale;
     vector <double> temp_tran;
     while (cout << "Please enter the temperature = ",cin >> degrees >> scale)
     {
-        temp_tran.push_back(convert(degrees,scale,'K'));
+        switch(convert(degrees,scale,'K',total))
+        {
+        case er_scale:
+        {
+            cerr << "Unknown scale!" << endl;
+            break;
+        }
+        case er_temp:
+        {
+            cerr << "Temperature below absolute zero!" << endl;
+            break;
+        }
+        case no_er:
+        {
+            temp_tran.push_back(total);
+            break;
+        }
+        default:
+        {
+            cerr << "Unknown error!" << endl;
+            break;
+        }
+        }
     }
     cout << "       Translation Table      "<< endl;
     cout << fixed;
@@ -20,46 +43,47 @@ int main()
         cout << "Kelvin = " << x << "\t Celsius = " << x-273.15 <<"\t Fahrenheit = " << ((x-273.15)*1.8+32) <<endl;
     }
 }
-double convert(double temperature, char from, char to) //Объявление функции
+error convert(double temperature, char from, char to, double &result) //Объявление функции
 {
     switch(from)
     {
     case 'K':
         if (temperature>=0)
         {
-            return temperature;
+            result=temperature;
+            return no_er;
             break;
         }
         else
         {
-            cout << "Error! Temperature is below absolute zero" << endl;
+            return er_temp;
             break;
         }
     case 'C':
         if (temperature>=-273.15)
         {
-            temperature=temperature+273.15;
-            return temperature;
+            result=temperature+273.15;
+            return no_er;
             break;
         }
         else
         {
-            cout << "Error! Temperature is below absolute zero" << endl;
+            return er_temp;
             break;
         }
     case 'F':
         if (temperature>=-459.67)
         {
-            temperature=(((temperature-32)*5)/9+273.15);
-            return temperature;
+            result=(((temperature-32)*5)/9+273.15);
+            return no_er;
             break;
         }
         else
         {
-            cout << "Error! Temperature is below absolute zero" << endl;
+            return er_temp;
             break;
         }
     default:
-        cout << "Error! Unknown scale. Please, use C, K or F" << endl;
+        return er_scale;
     }
 }
