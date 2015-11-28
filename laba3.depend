@@ -87,7 +87,86 @@
 
 1447960208 f:\lab_3\pynkt 9-10\convert.h
 
-1447955252 source:f:\lab3git\convert.cpp
+1447970388 source:f:\lab_3\pynkt 11\convert.cpp
+	"sdt.h"
+	"convert.h"
+
+1441352978 f:\lab_3\pynkt 11\sdt.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<sstream>
+	<cmath>
+	<cstdlib>
+	<string>
+	<list>
+	<forward_list>
+	<vector>
+	<map>
+	<unordered_map>
+	<algorithm>
+	<array>
+	<regex>
+	<random>
+	<stdexcept>
+
+1447970888 f:\lab_3\pynkt 11\convert.h
+
+1447971068 source:f:\lab_3\pynkt 11\main.cpp
+	"sdt.h"
+	"convert.h"
+
+1447970390 source:f:\lab_3\pynkt 11\temperature.cpp
+	"convert.h"
+	"sdt.h"
+
+1447970930 source:f:\lab_3\pynkt 11\peregryz.cpp
+	"convert.h"
+	"sdt.h"
+
+1447966788 source:g:\lab_3\pynkt 11\convert.cpp
+	"sdt.h"
+	"convert.h"
+
+1441349378 g:\lab_3\pynkt 11\sdt.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<sstream>
+	<cmath>
+	<cstdlib>
+	<string>
+	<list>
+	<forward_list>
+	<vector>
+	<map>
+	<unordered_map>
+	<algorithm>
+	<array>
+	<regex>
+	<random>
+	<stdexcept>
+
+1448010100 g:\lab_3\pynkt 11\convert.h
+	"sdt.h"
+
+1448010436 source:g:\lab_3\pynkt 11\main.cpp
+	"sdt.h"
+	"convert.h"
+
+1448007686 source:g:\lab_3\pynkt 11\peregryz.cpp
+	"convert.h"
+	"sdt.h"
+
+1447966790 source:g:\lab_3\pynkt 11\temperature.cpp
+	"convert.h"
+	"sdt.h"
+
+1448010082 source:g:\lab_3\pynkt 11\minmax.cpp
+	"convert.h"
+	"sdt.h"
+
+1447970388 source:f:\lab3git\convert.cpp
 	"sdt.h"
 	"convert.h"
 
@@ -110,5 +189,18 @@
 	<random>
 	<stdexcept>
 
-1447965594 f:\lab3git\convert.h
+1448013700 f:\lab3git\convert.h
+	"sdt.h"
+
+1447970390 source:f:\lab3git\temperature.cpp
+	"convert.h"
+	"sdt.h"
+
+1448734662 source:f:\lab3git\main.cpp
+	"sdt.h"
+	"convert.h"
+
+1448733834 source:f:\lab3git\peregryz.cpp
+	"convert.h"
+	"sdt.h"
 

@@ -7,5 +7,3 @@ Temperature::Temperature(double value, Scale symbol)
     this->symbol=symbol;
 }
 
-
-
