@@ -1,34 +1,26 @@
 #include "sdt.h"
 
-int last_error = 0;
 double convert(double temperature, char from, char to);
-int get_last_error();
 int main()
 {
     using namespace std;
-    double degrees;
+    double degrees,total;
     char scale;
     vector <double> temp_tran;
     while (cout << "Please enter the temperature = ",cin >> degrees >> scale)
     {
-        double total = convert(degrees,scale,'K');
-        switch(get_last_error())
+        try
         {
-        case 0:
-        {
+            double total = convert(degrees,scale,'K');
             temp_tran.push_back(total);
-            break;
         }
-        case 1:
+        catch (const invalid_argument& e)
         {
-            cerr << "Error! (Unknown scale or temperature below absolute zero)" << endl;
-            break;
+            cerr << e.what() << endl;
         }
-        default:
+        catch (const logic_error& le)
         {
-            cerr << "Unknown error!" << endl;
-            break;
-        }
+            cerr << le.what() << endl;
         }
     }
     cout << "       Translation Table      "<< endl;
@@ -41,7 +33,6 @@ int main()
 }
 double convert(double temperature, char from, char to) //Объявление функции
 {
-last_error=0;
     switch(from)
     {
     case 'K':
@@ -52,7 +43,7 @@ last_error=0;
         }
         else
         {
-            last_error=1;
+            throw logic_error("Temperature is below absolute zero");
             break;
         }
     case 'C':
@@ -63,7 +54,7 @@ last_error=0;
         }
         else
         {
-            last_error=1;
+            throw logic_error("Temperature is below absolute zero");
             break;
         }
     case 'F':
@@ -74,16 +65,11 @@ last_error=0;
         }
         else
         {
-            last_error=1;
+            throw logic_error("Temperature is below absolute zero");
             break;
         }
     default:
-        last_error=1;
+        throw invalid_argument("Unknown scale");
     }
     return temperature;
 }
-int get_last_error()
-{
-    return last_error;
-}
-
