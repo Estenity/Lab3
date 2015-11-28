@@ -1,0 +1,118 @@
+# depslib dependency file v1.0
+1446817802 source:g:\lab_3\laba3\main.cpp
+	"sdt.h"
+	"convert.h"
+	<iostream>
+
+1441349378 g:\lab_3\laba3\sdt.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<sstream>
+	<cmath>
+	<cstdlib>
+	<string>
+	<list>
+	<forward_list>
+	<vector>
+	<map>
+	<unordered_map>
+	<algorithm>
+	<array>
+	<regex>
+	<random>
+	<stdexcept>
+
+1446818008 g:\lab_3\laba3\convert.h
+
+1446817802 source:g:\lab_3\laba3\convert.cpp
+	"sdt.h"
+	"convert.h"
+
+1447955252 source:f:\lab_3\laba3\convert.cpp
+	"sdt.h"
+	"convert.h"
+
+1441352978 f:\lab_3\laba3\sdt.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<sstream>
+	<cmath>
+	<cstdlib>
+	<string>
+	<list>
+	<forward_list>
+	<vector>
+	<map>
+	<unordered_map>
+	<algorithm>
+	<array>
+	<regex>
+	<random>
+	<stdexcept>
+
+1447960208 f:\lab_3\laba3\convert.h
+
+1447955904 source:f:\lab_3\laba3\main.cpp
+	"sdt.h"
+	"convert.h"
+
+1447964508 source:f:\lab_3\laba3\temperature.cpp
+	"convert.h"
+	"sdt.h"
+
+1447955252 source:f:\lab_3\pynkt 9-10\convert.cpp
+	"sdt.h"
+	"convert.h"
+
+1441352978 f:\lab_3\pynkt 9-10\sdt.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<sstream>
+	<cmath>
+	<cstdlib>
+	<string>
+	<list>
+	<forward_list>
+	<vector>
+	<map>
+	<unordered_map>
+	<algorithm>
+	<array>
+	<regex>
+	<random>
+	<stdexcept>
+
+1447960208 f:\lab_3\pynkt 9-10\convert.h
+
+1447955252 source:f:\lab3git\convert.cpp
+	"sdt.h"
+	"convert.h"
+
+1441352978 f:\lab3git\sdt.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<sstream>
+	<cmath>
+	<cstdlib>
+	<string>
+	<list>
+	<forward_list>
+	<vector>
+	<map>
+	<unordered_map>
+	<algorithm>
+	<array>
+	<regex>
+	<random>
+	<stdexcept>
+
+1448731604 f:\lab3git\convert.h
+
+1448731604 source:f:\lab3git\main.cpp
+	"sdt.h"
+	"convert.h"
+
