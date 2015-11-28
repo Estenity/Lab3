@@ -1,31 +1,27 @@
 #include "sdt.h"
 
-enum error {er_temp,er_scale,no_er};
-error convert(double temperature, char from, char to, double &result);
-
+int last_error = 0;
+double convert(double temperature, char from, char to);
+int get_last_error();
 int main()
 {
     using namespace std;
-    double degrees,total;
+    double degrees;
     char scale;
     vector <double> temp_tran;
     while (cout << "Please enter the temperature = ",cin >> degrees >> scale)
     {
-        switch(convert(degrees,scale,'K',total))
+        double total = convert(degrees,scale,'K');
+        switch(get_last_error())
         {
-        case er_scale:
-        {
-            cerr << "Unknown scale!" << endl;
-            break;
-        }
-        case er_temp:
-        {
-            cerr << "Temperature below absolute zero!" << endl;
-            break;
-        }
-        case no_er:
+        case 0:
         {
             temp_tran.push_back(total);
+            break;
+        }
+        case 1:
+        {
+            cerr << "Error! (Unknown scale or temperature below absolute zero)" << endl;
             break;
         }
         default:
@@ -43,47 +39,51 @@ int main()
         cout << "Kelvin = " << x << "\t Celsius = " << x-273.15 <<"\t Fahrenheit = " << ((x-273.15)*1.8+32) <<endl;
     }
 }
-error convert(double temperature, char from, char to, double &result) //Объявление функции
+double convert(double temperature, char from, char to) //Объявление функции
 {
+last_error=0;
     switch(from)
     {
     case 'K':
         if (temperature>=0)
         {
-            result=temperature;
-            return no_er;
+            temperature=temperature;
             break;
         }
         else
         {
-            return er_temp;
+            last_error=1;
             break;
         }
     case 'C':
         if (temperature>=-273.15)
         {
-            result=temperature+273.15;
-            return no_er;
+            temperature=temperature+273.15;
             break;
         }
         else
         {
-            return er_temp;
+            last_error=1;
             break;
         }
     case 'F':
         if (temperature>=-459.67)
         {
-            result=(((temperature-32)*5)/9+273.15);
-            return no_er;
+            temperature=(((temperature-32)*5)/9+273.15);
             break;
         }
         else
         {
-            return er_temp;
+            last_error=1;
             break;
         }
     default:
-        return er_scale;
+        last_error=1;
     }
+    return temperature;
 }
+int get_last_error()
+{
+    return last_error;
+}
+
