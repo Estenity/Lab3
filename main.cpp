@@ -4,17 +4,15 @@
 int main()
 {
     using namespace std;
-    double degrees,total;
-    Scale TekScale;
-    vector <double> temp_tran;
+    Temperature data{0,K};
+    vector <Temperature> temp_tran;
     while (cout << "Please enter the temperature = ",
-            cin >> degrees,
-            cin >> (char&) TekScale)
+            cin >> data.value,
+            cin >> (char&) data.symbol)
     {
         try
         {
-            double total = convert(degrees,TekScale,K);
-            temp_tran.push_back(total);
+            temp_tran.push_back(Temperature(convert(data.value,data.symbol,K),K));
         }
         catch (const invalid_argument& e)
         {
@@ -27,10 +25,9 @@ int main()
     }
     cout << "       Translation Table      "<< endl;
     cout << fixed;
-    cout.precision(1);
-    for (double x:temp_tran)
+   cout.precision(1);
+    for (Temperature x:temp_tran)
     {
-        cout << "Kelvin = " << x << "\t Celsius = " << x-273.15 <<"\t Fahrenheit = " << ((x-273.15)*1.8+32) <<endl;
+        cout << "Kelvin = " << x.value<< "\t Celsius = " << x.value-273.15 <<"\t Fahrenheit = " << ((x.value-273.15)*1.8+32) <<endl;
     }
 }
-
