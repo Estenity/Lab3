@@ -1,4 +1,5 @@
 #include "sdt.h"
+enum error {er_temp,er_scale,no_er};
 double convert(double temperature, char from, char to);
 
 int main()
