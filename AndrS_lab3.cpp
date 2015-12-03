@@ -26,8 +26,31 @@ double convert(double temperature, char from, char to) //Объявление функции
     case 'K':
         if (temperature>=0)
         {
-            return temperature;
-            break;
+            switch(to)
+            {
+            case 'K':
+            {
+                temperature=temperature;
+                return temperature;
+                break;
+            }
+            case 'C':
+            {
+                temperature=temperature-273;
+                return temperature;
+                break;
+            }
+            case 'F':
+            {
+                temperature=temperature-459.67;
+                return temperature;
+                break;
+            }
+            default:
+            {
+                cout << "Error! Unknown scale. Please, use C, K or F" << endl;
+            }
+            }
         }
         else
         {
@@ -37,9 +60,31 @@ double convert(double temperature, char from, char to) //Объявление функции
     case 'C':
         if (temperature>=-273.15)
         {
-            temperature=temperature+273.15;
-            return temperature;
-            break;
+            switch(to)
+            {
+            case 'C':
+            {
+                temperature=temperature;
+                return temperature;
+                break;
+            }
+            case 'K':
+            {
+                temperature=temperature+273.15;
+                return temperature;
+                       break;
+            }
+            case 'F':
+            {
+                temperature=((temperature*9)/5)+32;
+                return temperature;
+                break;
+            }
+            default:
+            {
+                cout << "Error! Unknown scale. Please, use C, K or F" << endl;
+            }
+            }
         }
         else
         {
@@ -49,9 +94,29 @@ double convert(double temperature, char from, char to) //Объявление функции
     case 'F':
         if (temperature>=-459.67)
         {
-            temperature=(((temperature-32)*5)/9+273.15);
-            return temperature;
-            break;
+            switch(to)
+            {
+            case 'F':
+            {
+                temperature=temperature;
+                return temperature;
+                break;
+            }
+            case 'K':
+            {
+                temperature=(((temperature-32)*5)/9+273.15);
+                return temperature;
+                break;
+            }
+            case 'C':
+            {
+                temperature=(((temperature-32)*5)/9);
+                return temperature;
+                break;
+            }
+            default:
+                cout << "Error! Unknown scale. Please, use C, K or F" << endl;
+            }
         }
         else
         {
@@ -59,6 +124,9 @@ double convert(double temperature, char from, char to) //Объявление функции
             break;
         }
     default:
+    {
         cout << "Error! Unknown scale. Please, use C, K or F" << endl;
     }
+    }
+//return temperature;
 }
