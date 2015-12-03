@@ -18,13 +18,13 @@ double convert(double temperature, Scale from, Scale to) //Объявление 
             }
             case C:
             {
-                temperature=temperature-273;
+                temperature=temperature-273.15;
                 return temperature;
                 break;
             }
             case F:
             {
-                temperature=temperature-459.67;
+                temperature=1.8*(temperature-273.15)+32;
                 return temperature;
                 break;
             }
