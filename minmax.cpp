@@ -6,6 +6,8 @@
 void minimax(const vector<Temperature> temp_res, Temperature &minimum, Temperature &maximum, Temperature &average)
 {
     using namespace std;
+    average.value=0;
+    maximum.value=0;
     minimum=temp_res[0];
     for (Temperature x:temp_res)
     {

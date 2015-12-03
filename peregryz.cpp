@@ -80,7 +80,7 @@ Temperature& operator /= (Temperature& first,double number)
             temp=F;
             break;
         default:
-            temp=(Scale&) name;
+            input.setstate(ios_base::failbit);
             break;
         }
         return input;
