@@ -1,30 +1,27 @@
 #include "sdt.h"
-enum error {er_temp,er_scale,no_er};
-error convert(double temperature, char from, char to, double &result);
 
+int last_error = 0;
+double convert(double temperature, char from, char to);
+int get_last_error();
 int main()
 {
     using namespace std;
-    double degrees,total;
+    double degrees;
     char scale;
     vector <double> temp_tran;
     while (cout << "Please enter the temperature = ",cin >> degrees >> scale)
     {
-        switch(convert(degrees,scale,'K',total))
+        double total = convert(degrees,scale,'K');
+        switch(get_last_error())
         {
-        case er_scale:
-        {
-            cerr << "Unknown scale!" << endl;
-            break;
-        }
-        case er_temp:
-        {
-            cerr << "Temperature below absolute zero!" << endl;
-            break;
-        }
-        case no_er:
+        case 0:
         {
             temp_tran.push_back(total);
+            break;
+        }
+        case 1:
+        {
+            cerr << "Error! (Unknown scale or temperature below absolute zero)" << endl;
             break;
         }
         default:
@@ -34,6 +31,7 @@ int main()
         }
         }
     }
+    cout << "       Translation Table      "<< endl;
     cout << fixed;
     cout.precision(1);
     for (double x:temp_tran)
@@ -41,8 +39,9 @@ int main()
         cout << "Kelvin = " << x << "\t Celsius = " << x-273.15 <<"\t Fahrenheit = " << ((x-273.15)*1.8+32) <<endl;
     }
 }
-error convert(double temperature, char from, char to, double &result) //Объявление функции
+double convert(double temperature, char from, char to) //Объявление функции
 {
+last_error=0;
     switch(from)
     {
     case 'K':
@@ -52,32 +51,32 @@ error convert(double temperature, char from, char to, double &result) //Объявлен
             {
             case 'K':
             {
-                result=temperature;
-                return no_er;
+                temperature=temperature;
+                return temperature;
                 break;
             }
             case 'C':
             {
-                result=temperature-273;
-                return no_er;
+                temperature=temperature-273;
+                return temperature;
                 break;
             }
             case 'F':
             {
-                result=temperature-459.67;
-                return no_er;
+                temperature=temperature-459.67;
+                return temperature;
                 break;
             }
             default:
             {
-                return er_scale;
+                 last_error=1;
                 break;
             }
             }
         }
         else
         {
-            return er_temp;
+            last_error=1;
             break;
         }
     case 'C':
@@ -87,32 +86,32 @@ error convert(double temperature, char from, char to, double &result) //Объявлен
             {
             case 'C':
             {
-                result=temperature;
-                return no_er;
+                temperature=temperature;
+                return temperature;
                 break;
             }
             case 'K':
             {
-                result=temperature+273.15;
-                return no_er;
+                temperature=temperature+273.15;
+                return temperature;
                 break;
             }
             case 'F':
             {
-                result=((temperature*9)/5)+32;
-                return no_er;
+                temperature=((temperature*9)/5)+32;
+                return temperature;
                 break;
             }
             default:
             {
-                return er_scale;
+               last_error=1;
                 break;
             }
             }
         }
         else
         {
-            return er_temp;
+             last_error=1;
             break;
         }
     case 'F':
@@ -122,35 +121,41 @@ error convert(double temperature, char from, char to, double &result) //Объявлен
             {
             case 'F':
             {
-                result=temperature;
-                return no_er;
+                temperature=temperature;
+                return temperature;
                 break;
             }
             case 'K':
             {
-                result=(((temperature-32)*5)/9+273.15);
-                return no_er;
+                temperature=(((temperature-32)*5)/9+273.15);
+                return temperature;
                 break;
             }
             case 'C':
             {
-                result=(((temperature-32)*5)/9);
-                return no_er;
+                temperature=(((temperature-32)*5)/9);
+                return temperature;
                 break;
             }
             default:
-                return er_scale;
+                last_error=1;
                 break;
             }
         }
         else
         {
-            return er_temp;
+            last_error=1;
             break;
         }
     default:
     {
-        return er_scale;
+         last_error=1;
     }
     }
+return temperature;
 }
+int get_last_error()
+{
+    return last_error;
+}
+
